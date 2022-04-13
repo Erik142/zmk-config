@@ -11,63 +11,19 @@
 
 &mt {
   flavor = "tap-preferred";
-  tapping_term_ms = <200>;
+  tapping_term_ms = <250>;
 };
 
 / { 
-
-    combos {
-        compatible = "zmk,combos";
-        combo_esc {
-            timeout-ms = <50>;
-            key-positions = <0 1>;
-            bindings = <&kp ESC>;
-        };
-        
-         combo_tab {
-            timeout-ms = <50>;
-            key-positions = <10 11>;
-            bindings = <&kp TAB>;
-        };
-        
-            combo_ralt {
-            timeout-ms = <50>;
-            key-positions = <17 16>;
-            bindings = <&kp RALT>;
-        };
-        
-                    combo_lalt {
-            timeout-ms = <50>;
-            key-positions = <11 12>;
-            bindings = <&kp LALT>;
-        };
-        
-                           combo_lgui {
-            timeout-ms = <50>;
-            key-positions = <12 13>;
-            bindings = <&kp LGUI>;
-        };
-        
-        
-           combo_rgui {
-            timeout-ms = <50>;
-            key-positions = <17 18>;
-            bindings = <&kp RGUI>;
-        };
-        
-
-        
-    };
-
         keymap {
                 compatible = "zmk,keymap";
                 
        		default_layer {
 		bindings = <
 		&kp Q &kp W &kp E &kp R &kp T 						&kp Y &kp U  &kp I    &kp O   &kp P 
-		&mt LGUI A &mt LCTL S &mt LSFT D &mt RALT F &kp G 			&kp H &mt RALT J &mt RSFT K &mt RCTL L &mt RGUI QUOT
+		&mt LGUI A &mt LCTL S &mt LSFT D &mt RALT F &kp G 			&kp H &mt RALT J &mt RSFT K &mt RCTL L &mt RGUI SCLN
 		&mt LSFT Z &kp X &kp C &kp V &kp B				        &kp N &kp M  &kp CMMA &kp DOT &mt LSFT RET
-          				&mo 1 &kp BKSP  				&kp SPC &mo 2 
+          				&lt 1 ESC &kp BKSP  				&kp SPC &lt 2 RET 
 		>;
 		};
 
