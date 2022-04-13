@@ -10,8 +10,8 @@
 
 #define NUM 1
 #define SYM 2
-#define NAV 3
-#define MEDIA 4
+#define NAV 4
+#define MEDIA 3
 
 &mt {
   flavor = "tap-preferred";
@@ -49,7 +49,7 @@
 		&trans  &trans    &trans    &trans    &trans			&trans &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp EQUAL &kp NUM_4  &kp NUM_5 &kp NUM_6  &trans 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
-					    &mo 1  &trans  					&trans &trans 
+					    &trans  &trans  					&trans &trans 
 		>;
 		};
 		
@@ -58,15 +58,6 @@
 		&trans  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp EQUAL &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp NON_US_BACKSLASH 
-					    &trans  &mo 4  					&trans &trans 
-		>;
-		};
-		
-		nav_layer {
-		bindings = <
-		&trans  &trans    &trans    &trans    &trans			&kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_REDO 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
-		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
 					    &trans  &trans  					&trans &trans 
 		>;
 		};
@@ -77,6 +68,15 @@
 		&kp F1 &kp F2 &kp F3 &kp F4 &kp F5  						&trans &kp PG_UP  &kp K_VOL_UP &kp K_MUTE &trans 
 		&bt BT_CLR  &bt BT_NXT &bt BT_PRV &kp F6 &kp F7   				&trans &kp PG_DN  &kp K_VOL_DN  &trans &trans   
 					 &trans &trans  					&trans &trans 
+		>;
+		};
+		
+		nav_layer {
+		bindings = <
+		&trans  &trans    &trans    &trans    &trans			&kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_REDO 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
+		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
+					    &trans  &trans  					&trans &trans 
 		>;
 		};	
         
