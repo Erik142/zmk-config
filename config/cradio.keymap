@@ -29,7 +29,7 @@
 	    combo_nav_layer {
 	    timeout-ms = <50>;
             key-positions = <15 18>;
-            bindings = <&mo ESC>;
+            bindings = <&mo NAV>;
 	    };
 	};
 
@@ -41,7 +41,7 @@
 		&kp Q &kp W &kp E &kp R &kp T 						&kp Y &kp U  &kp I    &kp O   &kp P 
 		&mt LGUI A &mt LCTL S &mt LSFT D &mt RALT F &kp G 			&kp H &mt RALT J &mt RSFT K &mt RCTL L &mt RGUI SCLN
 		&mt LSFT Z &kp X &kp C &kp V &kp B				        &kp N &kp M  &kp CMMA &kp DOT &mt LSFT RET
-          				&lt 1 ESC &lt 2 BKSP  				&lt 4 SPC &lt 3 RET 
+          				&lt NUM ESC &lt SYM BKSP  				&lt 4 SPC &lt MEDIA RET 
 		>;
 		};
 
