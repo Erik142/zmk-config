@@ -11,7 +11,7 @@
 #define NUM 1
 #define SYM 2
 #define NAV 3
-#define 
+#define MEDIA 4
 
 &mt {
   flavor = "tap-preferred";
