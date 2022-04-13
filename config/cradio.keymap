@@ -8,6 +8,10 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define NUM 1
+#define SYM 2
+#define NAV 3
+#define 
 
 &mt {
   flavor = "tap-preferred";
@@ -15,10 +19,20 @@
 };
 
 &lt {
-  quick-tap-ms = <100>;
+  quick-tap-ms = <300>;
+  flavor = "tap-preferred";
 };
 
-/ { 
+/ {
+        combos {
+	compatible = "zmk,combos";
+	    combo_nav_layer {
+	    timeout-ms = <50>;
+            key-positions = <15 18>;
+            bindings = <&mo ESC>;
+	    };
+	};
+
         keymap {
                 compatible = "zmk,keymap";
                 
@@ -42,12 +56,21 @@
 		
 		sym_layer {
 		bindings = <
-		&trans  &trans    &trans    &trans    &trans			&trans &kp AMPERSAND &kp LPAR &kp RPAR &trans 
+		&trans  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp EQUAL &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp NON_US_BACKSLASH 
-					    &mo 1  &kp LGUI  					&kp RGUI &mo 2 
+					    &trans  &mo 4  					&trans &mo 2 
 		>;
-		};	
+		};
+		
+		nav_layer {
+		bindings = <
+		&trans  &trans    &trans    &trans    &trans			&kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_REDO 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
+		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
+					    &trans  &trans  					&trans &trans 
+		>;
+		};
 		
 		tri_layer {
 		bindings = <
