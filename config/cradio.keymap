@@ -24,6 +24,58 @@
 };
 
 / {
+        macros {
+	    macro_cut: macro_cut {
+                label = "ZM_macro_cut";
+                compatible = "zmk,behavior-macro";
+                bindings
+                    = <&macro_press &kp LCTL>
+                    , <&macro_tap &kp X>
+                    , <&macro_release &kp LCTL>
+                    ;
+            };
+	    
+            macro_copy: macro_copy {
+                label = "ZM_macro_copy";
+                compatible = "zmk,behavior-macro";
+                bindings
+                    = <&macro_press &kp LCTL>
+                    , <&macro_tap &kp C>
+                    , <&macro_release &kp LCTL>
+                    ;
+            };
+	    
+	    macro_paste: macro_paste {
+                label = "ZM_macro_paste";
+                compatible = "zmk,behavior-macro";
+                bindings
+                    = <&macro_press &kp LCTL>
+                    , <&macro_tap &kp V>
+                    , <&macro_release &kp LCTL>
+                    ;
+            };
+	    
+	    macro_undo: macro_undo {
+                label = "ZM_macro_undo";
+                compatible = "zmk,behavior-macro";
+                bindings
+                    = <&macro_press &kp LCTL>
+                    , <&macro_tap &kp Z>
+                    , <&macro_release &kp LCTL>
+                    ;
+            };
+	    
+	    macro_redo: macro_redo {
+                label = "ZM_macro_redo";
+                compatible = "zmk,behavior-macro";
+                bindings
+                    = <&macro_press &kp LCTL>
+                    , <&macro_tap &kp Y>
+                    , <&macro_release &kp LCTL>
+                    ;
+            };
+        };
+
         conditional_layers {
             compatible = "zmk,conditional-layers";
             nav_layer {
@@ -39,7 +91,7 @@
 		bindings = <
 		&kp Q &kp W &kp E &kp R &kp T 						&kp Y &kp U  &kp I    &kp O   &kp P 
 		&mt LGUI A &mt LCTL S &mt LSFT D &mt RALT F &kp G 			&kp H &mt RALT J &mt RSFT K &mt RCTL L &mt RGUI SCLN
-		&mt LSFT Z &kp X &kp C &kp V &kp B				        &kp N &kp M  &kp CMMA &kp DOT &mt LSFT RET
+		&mt LSFT Z &kp X &kp C &kp V &kp B				        &kp N &kp M  &kp CMMA &kp DOT &kp APOS
           				&lt NUM ESC &lt SYM BKSP  				&lt 4 SPC &lt MEDIA RET 
 		>;
 		};
@@ -73,7 +125,7 @@
 		
 		nav_layer {
 		bindings = <
-		&trans  &trans    &trans    &trans    &trans			&kp K_UNDO &kp K_CUT &kp K_COPY &kp K_PASTE &kp K_REDO 
+		&trans  &trans    &trans    &trans    &trans			&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
 		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
 					    &trans  &trans  					&trans &trans 
