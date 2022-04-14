@@ -28,6 +28,7 @@
 	    macro_cut: macro_cut {
                 label = "ZM_macro_cut";
                 compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
                 bindings
                     = <&macro_press &kp LCTL>
                     , <&macro_tap &kp X>
@@ -38,6 +39,7 @@
             macro_copy: macro_copy {
                 label = "ZM_macro_copy";
                 compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
                 bindings
                     = <&macro_press &kp LCTL>
                     , <&macro_tap &kp C>
@@ -48,6 +50,7 @@
 	    macro_paste: macro_paste {
                 label = "ZM_macro_paste";
                 compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
                 bindings
                     = <&macro_press &kp LCTL>
                     , <&macro_tap &kp V>
@@ -58,6 +61,7 @@
 	    macro_undo: macro_undo {
                 label = "ZM_macro_undo";
                 compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
                 bindings
                     = <&macro_press &kp LCTL>
                     , <&macro_tap &kp Z>
@@ -68,6 +72,7 @@
 	    macro_redo: macro_redo {
                 label = "ZM_macro_redo";
                 compatible = "zmk,behavior-macro";
+		#binding-cells = <0>;
                 bindings
                     = <&macro_press &kp LCTL>
                     , <&macro_tap &kp Y>
