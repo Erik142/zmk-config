@@ -122,7 +122,7 @@
 		bindings = <
 		&trans  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp EQUAL &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
-		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp NON_US_BACKSLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
 					    &trans  &trans  					&kp STAR &trans 
 		>;
 		};
