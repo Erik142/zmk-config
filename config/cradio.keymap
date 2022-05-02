@@ -15,14 +15,8 @@
 #define FUNCTION 5
 #define BOOTLOADER 6
 
-&mt {
-  flavor = "tap-preferred";
-  tapping_term_ms = <150>;
-  quick-tap-ms = <300>;
-};
-
 &lt {
-  quick-tap-ms = <300>;
+  quick-tap-ms = <150>;
   flavor = "balanced";
 };
 
@@ -103,8 +97,8 @@
                 label = "LEFT_POSITIONAL_HOLD_TAP";
                 #binding-cells = <2>;
                 flavor = "balanced";
-                tapping-term-ms = <150>;                        // <---[[produces tap if held longer than tapping-term-ms]]
-                quick-tap-ms = <250>;
+                tapping-term-ms = <175>;                        // <---[[produces tap if held longer than tapping-term-ms]]
+                quick-tap-ms = <150>;
                 bindings = <&kp>, <&kp>;
                 hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 32 33>;    // <---[[right-hand keys]]
             };
@@ -114,8 +108,8 @@
                 label = "RIGHT_POSITIONAL_HOLD_TAP";
                 #binding-cells = <2>;
                 flavor = "balanced";
-                tapping-term-ms = <150>;                        // <---[[produces tap if held longer than tapping-term-ms]]
-                quick-tap-ms = <250>;
+                tapping-term-ms = <175>;                        // <---[[produces tap if held longer than tapping-term-ms]]
+                quick-tap-ms = <150>;
                 bindings = <&kp>, <&kp>;
                 hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;    // <---[[left-hand keys]]
             };
@@ -145,7 +139,7 @@
 		sym_layer {
 		bindings = <
 		&trans  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp EQUAL &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &trans 		&kp GRAVE &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
 					    &trans  &trans  					&trans &trans 
 		>;
