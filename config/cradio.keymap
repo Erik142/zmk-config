@@ -139,7 +139,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_2";
                 #binding-cells = <0>;
-                tapping-term-ms = <200>;
+                tapping-term-ms = <300>;
                 bindings = <&kp ESC>, <&mo NUM>, <&mo SYM>, <&mo NAV>;
             };
 	    
@@ -147,7 +147,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_3";
                 #binding-cells = <0>;
-                tapping-term-ms = <200>;
+                tapping-term-ms = <300>;
                 bindings = <&kp RET>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
             };
 	    
