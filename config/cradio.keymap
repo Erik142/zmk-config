@@ -148,7 +148,7 @@
                 label = "TAP_DANCE_3";
                 #binding-cells = <0>;
                 tapping-term-ms = <200>;
-                bindings = <&kp SPC>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
+                bindings = <&kp RET>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
             };
 	    
 	    td_lsc: tap_dance_4 {
