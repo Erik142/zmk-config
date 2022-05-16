@@ -140,7 +140,7 @@
                 label = "TAP_DANCE_2";
                 #binding-cells = <0>;
                 tapping-term-ms = <175>;
-                bindings = <&kp BKSP>, <&mo NUM>, <&mo SYM>, <&mo NAV>;
+                bindings = <&kp BKSP>, <&to NUM>, <&to SYM>, <&to NAV>;
             };
 	    
 	    td_rhl: tap_dance_3 {
@@ -148,7 +148,7 @@
                 label = "TAP_DANCE_1";
                 #binding-cells = <0>;
                 tapping-term-ms = <175>;
-                bindings = <&kp SPC>, <&mo MEDIA>, <&mo FUNCTION>;
+                bindings = <&kp SPC>, <&to MEDIA>, <&to FUNCTION>, <&to BOOTLOADER>;
             };
 	};
 
