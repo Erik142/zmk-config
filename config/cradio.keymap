@@ -126,7 +126,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_2";
                 #binding-cells = <0>;
-                tapping-term-ms = <300>;
+                tapping-term-ms = <200>;
                 bindings = <&kp ESC>, <&mo NUM>, <&mo SYM>, <&mo NAV>;
             };
 	    
@@ -134,7 +134,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_3";
                 #binding-cells = <0>;
-                tapping-term-ms = <300>;
+                tapping-term-ms = <200>;
                 bindings = <&kp RET>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
             };
 	    
@@ -142,7 +142,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_4";
                 #binding-cells = <0>;
-                tapping-term-ms = <150>;
+                tapping-term-ms = <125>;
                 bindings = <&lh_hm LSFT D>, <&caps_word>;
             };
 	    
@@ -150,7 +150,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_5";
                 #binding-cells = <0>;
-                tapping-term-ms = <150>;
+                tapping-term-ms = <125>;
                 bindings = <&rh_hm LSFT K>, <&caps_word>;
             };
 	};
