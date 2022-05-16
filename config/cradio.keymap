@@ -123,7 +123,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_0";
                 #binding-cells = <0>;
-                tapping-term-ms = <150>;
+                tapping-term-ms = <175>;
                 bindings = <&kp MINUS>, <&kp UNDERSCORE>;
             };
 	    
@@ -131,7 +131,7 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_1";
                 #binding-cells = <0>;
-                tapping-term-ms = <150>;
+                tapping-term-ms = <175>;
                 bindings = <&kp EQUAL>, <&kp PLUS>;
             };
 	    
@@ -139,16 +139,32 @@
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_2";
                 #binding-cells = <0>;
-                tapping-term-ms = <175>;
-                bindings = <&kp BKSP>, <&to NUM>, <&to SYM>, <&to NAV>;
+                tapping-term-ms = <200>;
+                bindings = <&kp ESC>, <&mo NUM>, <&mo SYM>, <&mo NAV>;
             };
 	    
 	    td_rhl: tap_dance_3 {
                 compatible = "zmk,behavior-tap-dance";
-                label = "TAP_DANCE_1";
+                label = "TAP_DANCE_3";
                 #binding-cells = <0>;
-                tapping-term-ms = <175>;
-                bindings = <&kp SPC>, <&to MEDIA>, <&to FUNCTION>, <&to BOOTLOADER>;
+                tapping-term-ms = <200>;
+                bindings = <&kp SPC>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
+            };
+	    
+	    td_lsc: tap_dance_4 {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_4";
+                #binding-cells = <0>;
+                tapping-term-ms = <200>;
+                bindings = <&lh_hm LSFT D>, <&caps_word>;
+            };
+	    
+	    td_rsc: tap_dance_5 {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_5";
+                #binding-cells = <0>;
+                tapping-term-ms = <200>;
+                bindings = <&rh_hm LSFT K>, <&caps_word>;
             };
 	};
 
@@ -158,9 +174,9 @@
        		default_layer {
 		bindings = <
 		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
-		&lh_hm LGUI A &lh_hm LCTL S &lh_hm LSFT D &lh_hm RALT F &lh_hm LALT G 			&rh_hm LALT H &rh_hm RALT J &rh_hm RSFT K &rh_hm RCTL L &rh_hm RGUI SCLN
+		&lh_hm LGUI A &lh_hm LCTL S &td_lsc &lh_hm RALT F &lh_hm LALT G 			&rh_hm LALT H &rh_hm RALT J &td_rsc &rh_hm RCTL L &rh_hm RGUI SCLN
 		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
-          				&kp ESC &td_lhl  				&td_rhl &kp RET 
+          				&td_lhl &kp BKSP  				&kp SPC &td_rhl
 		>;
 		};
 
@@ -169,7 +185,7 @@
 		&trans  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&td_mu &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
-					    &to BASE  &trans  					&trans &trans 
+					    &trans  &trans  					&trans &trans 
 		>;
 		};
 		
@@ -178,7 +194,7 @@
 		&trans  &trans    &caps_word    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp GRAVE &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
-					    &to BASE  &trans  					&trans &trans 
+					    &trans  &trans  					&trans &trans 
 		>;
 		};
 		
@@ -187,7 +203,7 @@
 		&trans &trans &trans &trans &trans 			        &trans &trans &caps_word &trans &trans
 		&kp C_PREV  &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &kp C_NEXT     &kp LALT &kp RALT &kp RSFT &kp RCTL &kp RGUI 
 		&trans  &trans &trans &trans &trans   			        &trans &trans &trans &trans &trans   
-			&kp C_PLAY_PAUSE &trans  				       &trans &to BASE
+			&kp C_PLAY_PAUSE &trans  				       &trans &trans
 		>;
 		};
 		
@@ -196,7 +212,7 @@
 		&bootloader  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
 		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
-					    &to BASE  &trans  					&trans &trans 
+					    &trans  &trans  					&trans &trans 
 		>;
 		};
 		
