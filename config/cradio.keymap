@@ -195,7 +195,7 @@
 		&kp F12  &kp F7 &kp F8 &kp F9 &kp CAPS 			&trans &trans &caps_word &trans &trans
 		&kp F11  &kp F4 &kp F5 &kp F6 &trans  			&kp LALT &kp RALT &kp RSFT &kp RCTL &kp RGUI 
 		&kp F10  &kp F1 &kp F2 &kp F3 &trans   			&trans &trans &trans &trans &trans   
-			 &kp TAB &trans  					&trans &to BASE 
+			 &kp TAB &kp DEL  					&trans &to BASE 
 		>;
 		};
 		
