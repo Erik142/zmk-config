@@ -26,6 +26,21 @@
 };
 
 / {
+        combos {
+            compatible = "zmk,combos";
+            combo_esc_left {
+                timeout-ms = <50>;
+                key-positions = <10 11 12 13>;
+                bindings = <&caps_word>;
+            };
+	    
+	    combo_esc_right {
+                timeout-ms = <50>;
+                key-positions = <15 16 17 18>;
+                bindings = <&caps_word>;
+            };
+        };
+	
         macros {
 	    macro_cut: macro_cut {
                 label = "ZM_macro_cut";
@@ -83,27 +98,23 @@
             };
         };
 	
-	behaviors {
-	    lh_hm: left_hand_positional_hold_tap {
-                compatible = "zmk,behavior-hold-tap";
-                label = "LEFT_POSITIONAL_HOLD_TAP";
-                #binding-cells = <2>;
-                flavor = "balanced";
-                tapping-term-ms = <175>;                        // <---[[produces tap if held longer than tapping-term-ms]]
-                quick-tap-ms = <200>;
-                bindings = <&kp>, <&kp>;
-                hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 32 33>;    // <---[[right-hand keys]]
+	conditional_layers {
+            compatible = "zmk,conditional-layers";
+            bootloader_layer {
+                if-layers = <MEDIA FUNCTION>;
+                then-layer = <BOOTLOADER>;
             };
-	    
-	    rh_hm: right_hand_positional_hold_tap {
+        };
+	
+	behaviors {
+	    hm: left_hand_positional_hold_tap {
                 compatible = "zmk,behavior-hold-tap";
-                label = "RIGHT_POSITIONAL_HOLD_TAP";
+                label = "HOME_ROW_HOLD_TAP";
                 #binding-cells = <2>;
                 flavor = "balanced";
                 tapping-term-ms = <175>;                        // <---[[produces tap if held longer than tapping-term-ms]]
                 quick-tap-ms = <200>;
                 bindings = <&kp>, <&kp>;
-                hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31>;    // <---[[left-hand keys]]
             };
 	    
 	    td_mu: tap_dance_0 {
@@ -122,36 +133,12 @@
                 bindings = <&kp EQUAL>, <&kp PLUS>;
             };
 	    
-	    td_lhl: tap_dance_2 {
+	    tdl: tap_dance_layer {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_2";
-                #binding-cells = <0>;
-                tapping-term-ms = <200>;
-                bindings = <&kp ESC>, <&mo NUM>, <&mo SYM>, <&mo NAV>;
-            };
-	    
-	    td_rhl: tap_dance_3 {
-                compatible = "zmk,behavior-tap-dance";
-                label = "TAP_DANCE_3";
-                #binding-cells = <0>;
-                tapping-term-ms = <200>;
-                bindings = <&kp RET>, <&mo MEDIA>, <&mo FUNCTION>, <&mo BOOTLOADER>;
-            };
-	    
-	    td_lsc: tap_dance_4 {
-                compatible = "zmk,behavior-tap-dance";
-                label = "TAP_DANCE_4";
-                #binding-cells = <0>;
-                tapping-term-ms = <150>;
-                bindings = <&lh_hm LSFT D>, <&caps_word>;
-            };
-	    
-	    td_rsc: tap_dance_5 {
-                compatible = "zmk,behavior-tap-dance";
-                label = "TAP_DANCE_5";
-                #binding-cells = <0>;
-                tapping-term-ms = <150>;
-                bindings = <&rh_hm LSFT K>, <&caps_word>;
+                #binding-cells = <2>;
+                tapping-term-ms = <250>;
+                bindings = <&mo>, <&mo>;
             };
 	};
 
@@ -161,15 +148,15 @@
        		default_layer {
 		bindings = <
 		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
-		&lh_hm LGUI A &lh_hm LCTL S &td_lsc &lh_hm RALT F &lh_hm LALT G 			&rh_hm LALT H &rh_hm RALT J &td_rsc &rh_hm RCTL L &rh_hm RGUI SCLN
+		&hm LGUI A &hm LCTL S &hm LSFT D &hm RALT F &lh_hm LALT G 			&hm LALT H &hm RALT J &hm RSFT K &hm RCTL L &hm RGUI SCLN
 		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
-          				&td_lhl &kp BKSP  				&kp SPC &td_rhl
+          				&tdl NUM NAV &lt SYM BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 		>;
 		};
 
 		num_layer {
 		bindings = <
-		&trans  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
+		&kp ESC  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&td_mu &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
 					    &trans  &trans  					&trans &trans 
@@ -178,7 +165,7 @@
 		
 		sym_layer {
 		bindings = <
-		&trans  &trans    &caps_word    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
+		&kp ESC  &trans    &caps_word    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp GRAVE &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
 					    &trans  &trans  					&trans &trans 
@@ -196,7 +183,7 @@
 		
 		nav_layer {
 		bindings = <
-		&bootloader  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
+		&kp ESC  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN  &kp UP &kp RIGHT  &trans 
 		&trans  &trans    &trans    &trans    &trans 			&trans &trans &trans &trans  &trans 
 					    &trans  &trans  					&trans &trans 
