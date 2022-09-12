@@ -159,6 +159,14 @@
                 bindings = <&kp RBKT>, <&kp RBRC>;
             };
 	    
+	    td_pb: tap_dance_4 {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_4";
+                #binding-cells = <0>;
+                tapping-term-ms = <225>;
+                bindings = <&kp PIPE>, <&kp BACKSLASH>;
+            };
+	    
 	    tdll: tap_dance_layer_left {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_LAYER_LEFT";
@@ -193,7 +201,7 @@
 		bindings = <
 		&kp ESC  &trans    &caps_word    &trans    &trans			&td_lb &kp AMPERSAND &kp LPAR &kp RPAR &td_rb 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
-		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &td_pb 
 					    &trans  &trans  					&trans &trans 
 		>;
 		};
