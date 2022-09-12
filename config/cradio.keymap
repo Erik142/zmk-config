@@ -143,6 +143,22 @@
                 bindings = <&kp EQUAL>, <&kp PLUS>;
             };
 	    
+	    td_lb: tap_dance_0 {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_2";
+                #binding-cells = <0>;
+                tapping-term-ms = <175>;
+                bindings = <&kp LBKT>, <&kp LBRC>;
+            };
+	    
+	    td_rb: tap_dance_0 {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_3";
+                #binding-cells = <0>;
+                tapping-term-ms = <175>;
+                bindings = <&kp RBKT>, <&kp RBRC>;
+            };
+	    
 	    tdll: tap_dance_layer_left {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_LAYER_LEFT";
@@ -175,7 +191,7 @@
 		
 		sym_layer {
 		bindings = <
-		&kp ESC  &trans    &caps_word    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
+		&kp ESC  &trans    &caps_word    &trans    &trans			&td_lb &kp AMPERSAND &kp LPAR &kp RPAR &td_rb 
 		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
 					    &trans  &trans  					&trans &trans 
