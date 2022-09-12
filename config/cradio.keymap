@@ -127,7 +127,7 @@
                 bindings = <&kp>, <&kp>;
             };
 	    
-	    td_mu: tap_dance_0 {
+	    td_tg: tap_dance_0 {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_0";
                 #binding-cells = <0>;
@@ -176,8 +176,8 @@
 		sym_layer {
 		bindings = <
 		&kp ESC  &trans    &caps_word    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp GRAVE &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
-		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp BACKSLASH 
 					    &trans  &trans  					&trans &trans 
 		>;
 		};
