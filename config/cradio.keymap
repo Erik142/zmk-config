@@ -132,7 +132,7 @@
                 label = "TAP_DANCE_0";
                 #binding-cells = <0>;
                 tapping-term-ms = <175>;
-                bindings = <&kp MINUS>, <&kp UNDERSCORE>;
+                bindings = <&kp TILDE>, <&kp GRAVE>;
             };
 	    
 	    td_ep: tap_dance_1 {
