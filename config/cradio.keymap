@@ -143,7 +143,7 @@
                 bindings = <&kp EQUAL>, <&kp PLUS>;
             };
 	    
-	    td_lb: tap_dance_0 {
+	    td_lb: tap_dance_2 {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_2";
                 #binding-cells = <0>;
@@ -151,7 +151,7 @@
                 bindings = <&kp LBKT>, <&kp LBRC>;
             };
 	    
-	    td_rb: tap_dance_0 {
+	    td_rb: tap_dance_3 {
                 compatible = "zmk,behavior-tap-dance";
                 label = "TAP_DANCE_3";
                 #binding-cells = <0>;
