@@ -160,15 +160,15 @@
 		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
 		&hms LGUI A &hm LCTL S &hms LSFT D &hms RALT F &hm LALT G 			&hm LALT H &hms RALT J &hms RSFT K &hm RCTL L &hms RGUI SCLN
 		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
-          				&tdll &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 		>;
 		};
 
 		num_layer {
 		bindings = <
 		&kp ESC  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
-		&trans  &trans    &trans    &trans    &trans 			&td_mu &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
+		&kp LGUI  &kp LCTL    &mo SYM    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
 					    &trans  &trans  					&trans &trans 
 		>;
 		};
