@@ -200,7 +200,7 @@
 		sym_layer {
 		bindings = <
 		&kp ESC  &trans    &caps_word    &trans    &trans			&td_lb &kp AMPERSAND &kp LPAR &kp RPAR &td_rb 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp SLASH 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp QMARK 
 		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &td_pb 
 					    &trans  &trans  					&trans &trans 
 		>;
