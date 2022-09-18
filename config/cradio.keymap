@@ -9,12 +9,13 @@
 #include <dt-bindings/zmk/bt.h>
 
 #define BASE 0
-#define NUM 1
-#define SYM 2
-#define MEDIA 3
-#define NAV 4
-#define FUNCTION 5
-#define BOOTLOADER 6
+#define COLEMAK 1
+#define NUM 2
+#define SYM 3
+#define MEDIA 4
+#define NAV 5
+#define FUNCTION 6
+#define BOOTLOADER 7
 
 &lt {
   quick-tap-ms = <200>;
@@ -187,6 +188,15 @@
           				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 		>;
 		};
+		
+		colemak_layer {
+		bindings = <
+		&kp Q &kp W &kp F &kp P &kp B 								&kp J &kp L  &kp U    &kp Y   &kp SCLN 
+		&hms LGUI A &hm LCTL R &hms LSFT S &hms RALT T &hm LALT G 			&hm LALT M &hms RALT N &hms RSFT E &hm RCTL I &hms RGUI O
+		&kp Z &kp X &kp C &kp D &kp V				        			&kp K &kp H  &kp CMMA &kp DOT &kp APOS
+          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+		>;
+		};
 
 		num_layer {
 		bindings = <
@@ -235,7 +245,7 @@
 		
 		bootloader_layer {
 		bindings = <
-		&bootloader  &trans &trans &trans &trans 	        &trans &trans &trans &trans &bootloader
+		&bootloader  &trans &trans &tog BASE &tog COLEMAK 	        &trans &trans &trans &trans &bootloader
 		&trans  &bt BT_PRV &bt BT_CLR &bt BT_NXT &trans  			&trans &trans &trans &trans &trans 
 		&bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   			&trans &trans &trans &trans &trans   
 					 &trans &trans  					&trans &trans 
