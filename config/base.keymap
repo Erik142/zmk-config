@@ -10,8 +10,11 @@
 #define SYM 3
 #define MEDIA 4
 #define NAV 5
-#define FUNCTION 6
-#define BOOTLOADER 7
+#define MOUSE 6
+#define FUNCTION 7
+#define BOOTLOADER 8
+
+#include "mouse.dtsi"
 
 #define XXX &none
 #define ___ &trans
@@ -27,7 +30,7 @@
 };
 
 &caps_word {
-    continue-list = <UNDERSCORE MINUS>;
+    continue-list = <BSPC UNDERSCORE MINUS K_CANCEL>;
 };
 
 
@@ -51,14 +54,26 @@
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
 
+/* Hold-taps */
+
+
 /* Conditional layers */
 ZMK_CONDITIONAL_LAYER(MEDIA FUNCTION, BOOTLOADER)
 
 /* Combo definitions */
 
-ZMK_COMBO(caps_left, &caps_word, 10 11 12 13, 0 1, 50)
-ZMK_COMBO(caps_left, &caps_word, 16 17 18 19, 0 1, 50)
+#undef COMBO_HOOK
+#define COMBO_HOOK global-quick-tap-ms = <100>;
 
+#undef COMBO_TERM_FAST
+#undef COMBO_TERM_SLOW
+#define COMBO_TERM_FAST 20
+#define COMBO_TERM_SLOW 35
+
+ZMK_COMBO(equal, &kp EQUAL, RM0 RM1, NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(grave, &kp GRAVE, RM0 RM1, SYM, COMBO_TERM_SLOW)
+ZMK_COMBO(question, &kp QMARK, RM1 RM2, SYM, COMBO_TERM_SLOW)
+ZMK_COMBO(caps, &smart_caps_word, LM1 LM2 LM3, BASE COLEMAK, COMBO_TERM_SLOW)
 /* Macro definitions */
 
 ZMK_BEHAVIOR(macro_cut, macro,
@@ -103,35 +118,53 @@ ZMK_BEHAVIOR(macro_redo, macro,
 
 /* Tap dance behaviors */
 
-ZMK_BEHAVIOR(td_tg, tap_dance,
-    tapping-term-ms = <175>;
-    bindings = <&kp TILDE>, <&kp GRAVE>;
+#define MAKE_MO_TD(NAME, LAYER, SMART_LAYER) \
+    ZMK_BEHAVIOR(NAME, tap_dance, \
+        tapping-term-ms = <225>; \
+        bindings = <&sl LAYER>, <SMART_LAYER>; \
+    )
+
+MAKE_MO_TD(num, NUM, &num_word)
+MAKE_MO_TD(sym, SYM, &smart_sym)
+MAKE_MO_TD(nav, NAV, &smart_nav)
+MAKE_MO_TD(mouse, MOUSE, &tog MOUSE)
+
+/* Smart behaviors */
+
+// smart-mouse, requires PR #1366
+// ZMK_BEHAVIOR(smart_mouse, tri_state,
+//     bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+//     ignored-key-positions = <RT1 RT2 RM0 RM1 RM2 RM3 LH0 LH1>;
+//     ignored-layers = <MOUSE>;
+// )
+
+// smart caps_word behavior
+ZMK_BEHAVIOR(smart_caps_word, macro,
+    bindings
+        = <&caps_word>
+        , <&to BASE>
+        ;
 )
 
-ZMK_BEHAVIOR(td_ep, tap_dance,
-    tapping-term-ms = <175>;
-    bindings = <&kp EQUAL>, <&kp PLUS>;
+// smart symbol layer behavior
+ZMK_BEHAVIOR(smart_sym, caps_word,
+    layers = <SYM>;
+    continue-list = <EXCL AT HASH DOLLAR PERCENT CARET AMPERSAND LPAR RPAR UNDERSCORE QMARK LBKT LBRC RBKT RBRC TILDE GRAVE PIPE BACKSLASH>;
+    ignore-modifiers;
 )
 
-ZMK_BEHAVIOR(td_lb, tap_dance,
-    tapping-term-ms = <175>;
-    bindings = <&kp LBKT>, <&kp LBRC>;
+// smart navigation layer behavior
+ZMK_BEHAVIOR(smart_nav, caps_word,
+    layers = <NAV>;
+    continue-list = <LEFT DOWN UP RIGHT HOME PAGE_UP PAGE_DOWN END PSCRN>;
+    ignore-modifiers;
 )
 
-ZMK_BEHAVIOR(td_rb, tap_dance,
-    tapping-term-ms = <225>;
-    bindings = <&kp RBKT>, <&kp RBRC>;
-)
-
-ZMK_BEHAVIOR(td_pb, tap_dance,
-    tapping-term-ms = <225>;
-    bindings = <&kp PIPE>, <&kp BACKSLASH>;
-)
-
-ZMK_BEHAVIOR(tdll, tap_dance,
-    tapping-term-ms = <250>;
-    bindings = <&mo NUM>, <&mo SYM>;
-)
+&num_word {
+    layers = <NUM>;
+    continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR EQUAL SLASH>;
+    ignore-modifiers;
+};
 
 /* Layer definitions */
 
@@ -139,28 +172,28 @@ ZMK_LAYER(base,
 		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
 		&hml LGUI A &hml LCTL S &hml LSFT D &hml RALT F &hml LALT G 			&hmr LALT H &hmr RALT J &hmr RSFT K &hmr RCTL L &hmr RGUI SCLN
 		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
-          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+          				&num &kp BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 )
 
 ZMK_LAYER(colemak,
 		&kp Q &kp W &kp F &kp P &kp B 								&kp J &kp L  &kp U    &kp Y   &kp SCLN 
 		&hml LGUI A &hml LCTL R &hml LSFT S &hml RALT T &hml LALT G 			&hmr LALT M &hmr RALT N &hmr RSFT E &hmr RCTL I &hmr RGUI O
 		&kp Z &kp X &kp C &kp D &kp V				        			&kp K &kp H  &kp CMMA &kp DOT &kp APOS
-          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+          				&num &kp BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 )
 
 ZMK_LAYER(num,
-		&kp ESC  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
-		&kp LGUI  &kp LCTL    &mo SYM    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
+		&kp ESC  &trans    &trans    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
+		&kp LGUI  &kp LCTL    &sym    &kp RALT    &kp LALT 		&kp PLUS &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
-					    &trans  &trans  					&trans &trans 
+					    &trans  &nav  					&kp K_CANCEL &trans 
 )
 
 ZMK_LAYER(sym,
-		&kp ESC  &trans    &caps_word    &trans    &trans			&td_lb &kp AMPERSAND &kp LPAR &kp RPAR &td_rb 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp QMARK 
-		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &td_pb 
-					    &trans  &trans  					&trans &trans 
+		&kp ESC  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
+		&kp LGUI  &kp LCTL    &sk LSFT    &kp RALT    &kp LALT 		&kp TILDE &kp DOLLAR  &kp PERCENT &kp CARET  &kp BACKSLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp PIPE 
+					    &trans  &trans  					&kp K_CANCEL &trans 
 )
 
 ZMK_LAYER(media,
@@ -172,9 +205,16 @@ ZMK_LAYER(media,
 
 ZMK_LAYER(nav,
 		&kp ESC  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
-		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN &kp UP &kp RIGHT &trans 
+		&kp LGUI  &kp LCTL    &mouse    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN &kp UP &kp RIGHT &trans 
 		&trans  &trans    &trans    &trans    &trans 			&kp HOME &kp PAGE_DOWN &kp PAGE_UP &kp END &kp PSCRN 
-					    &trans  &trans  					&trans &trans 
+					    &trans  &trans  	            &kp K_CANCEL &trans 
+)
+
+ZMK_LAYER(mouse,
+		&trans  &trans    &trans    &trans    &trans		&trans U_WH_D U_WH_U &trans &trans 
+		&trans  &trans    &trans    &trans    &trans 		U_MS_L U_MS_D U_MS_U U_MS_R &trans 
+		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
+					    U_BTN1  U_BTN2           &to BASE &trans 
 )
 
 ZMK_LAYER(function,
