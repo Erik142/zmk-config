@@ -1,0 +1,192 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#include "../zmk-nodefree-config/helper.h"
+
+#define BASE 0
+#define COLEMAK 1
+#define NUM 2
+#define SYM 3
+#define MEDIA 4
+#define NAV 5
+#define FUNCTION 6
+#define BOOTLOADER 7
+
+#define XXX &none
+#define ___ &trans
+
+/* Global settings */
+
+#define QUICK_TAP_MS 175
+
+&lt {
+    quick-tap-ms = <200>;
+    flavor = "balanced";
+    quick-tap-ms = <QUICK_TAP_MS>; \
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS>;
+};
+
+
+/* Homerow mods */
+
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // left hand
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // right hand
+#define THUMBS LH1 LH0 RH0 RH1                                              // thumbs
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
+    ZMK_BEHAVIOR(NAME, hold_tap, \
+        flavor = "balanced"; \
+        tapping-term-ms = <280>; \
+        quick-tap-ms = <QUICK_TAP_MS>; \
+        global-quick-tap-ms = <150>; \
+        bindings = <HOLD>, <TAP>; \
+        hold-trigger-key-positions = <TRIGGER_POS>; \
+        hold-trigger-on-release; \
+    )
+
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
+
+/* Conditional layers */
+ZMK_CONDITIONAL_LAYER(MEDIA FUNCTION, BOOTLOADER)
+
+/* Combo definitions */
+
+ZMK_COMBO(caps_left, &caps_word, 10 11 12 13, 0 1, 50)
+ZMK_COMBO(caps_left, &caps_word, 16 17 18 19, 0 1, 50)
+
+/* Macro definitions */
+
+ZMK_BEHAVIOR(macro_cut, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp X>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_copy, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp C>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_paste, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp V>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_undo, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp Z>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_redo, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp Y>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+/* Tap dance behaviors */
+
+ZMK_BEHAVIOR(td_tg, tap_dance,
+    tapping-term-ms = <175>;
+    bindings = <&kp TILDE>, <&kp GRAVE>;
+)
+
+ZMK_BEHAVIOR(td_ep, tap_dance,
+    tapping-term-ms = <175>;
+    bindings = <&kp EQUAL>, <&kp PLUS>;
+)
+
+ZMK_BEHAVIOR(td_lb, tap_dance,
+    tapping-term-ms = <175>;
+    bindings = <&kp LBKT>, <&kp LBRC>;
+)
+
+ZMK_BEHAVIOR(td_rb, tap_dance,
+    tapping-term-ms = <225>;
+    bindings = <&kp RBKT>, <&kp RBRC>;
+)
+
+ZMK_BEHAVIOR(td_pb, tap_dance,
+    tapping-term-ms = <225>;
+    bindings = <&kp PIPE>, <&kp BACKSLASH>;
+)
+
+ZMK_BEHAVIOR(tdll, tap_dance,
+    tapping-term-ms = <250>;
+    bindings = <&mo NUM>, <&mo SYM>;
+)
+
+/* Layer definitions */
+
+ZMK_LAYER(base,
+		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
+		&hml LGUI A &hml LCTL S &hml LSFT D &hml RALT F &hml LALT G 			&hmr LALT H &hmr RALT J &hmr RSFT K &hmr RCTL L &hmr RGUI SCLN
+		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
+          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+)
+
+ZMK_LAYER(colemak,
+		&kp Q &kp W &kp F &kp P &kp B 								&kp J &kp L  &kp U    &kp Y   &kp SCLN 
+		&hml LGUI A &hml LCTL R &hml LSFT S &hml RALT T &hml LALT G 			&hmr LALT M &hmr RALT N &hmr RSFT E &hmr RCTL I &hmr RGUI O
+		&kp Z &kp X &kp C &kp D &kp V				        			&kp K &kp H  &kp CMMA &kp DOT &kp APOS
+          				&mo NUM &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+)
+
+ZMK_LAYER(num,
+		&kp ESC  &trans    &caps_word    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
+		&kp LGUI  &kp LCTL    &mo SYM    &kp RALT    &kp LALT 		&td_ep &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
+					    &trans  &trans  					&trans &trans 
+)
+
+ZMK_LAYER(sym,
+		&kp ESC  &trans    &caps_word    &trans    &trans			&td_lb &kp AMPERSAND &kp LPAR &kp RPAR &td_rb 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&td_tg &kp DOLLAR  &kp PERCENT &kp CARET  &kp QMARK 
+		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &td_pb 
+					    &trans  &trans  					&trans &trans 
+)
+
+ZMK_LAYER(media,
+		&trans &trans &trans &trans &trans 			        &trans &trans &caps_word &trans &trans
+		&kp C_PREV  &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &kp C_NEXT     &kp LALT &kp RALT &kp RSFT &kp RCTL &kp RGUI 
+		&trans  &trans &trans &trans &trans   			        &trans &trans &trans &trans &trans   
+			&kp C_PLAY_PAUSE &trans  				       &trans &trans
+)
+
+ZMK_LAYER(nav,
+		&kp ESC  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
+		&kp LGUI  &kp LCTL    &kp LSFT    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN &kp UP &kp RIGHT &trans 
+		&trans  &trans    &trans    &trans    &trans 			&kp HOME &kp PAGE_DOWN &kp PAGE_UP &kp END &kp PSCRN 
+					    &trans  &trans  					&trans &trans 
+)
+
+ZMK_LAYER(function,
+		&kp F12  &kp F7 &kp F8 &kp F9 &kp CAPS 			&trans &trans &caps_word &trans &trans
+		&kp F11  &kp F4 &kp F5 &kp F6 &trans  			&kp LALT &kp RALT &kp RSFT &kp RCTL &kp RGUI 
+		&kp F10  &kp F1 &kp F2 &kp F3 &trans   			&trans &trans &trans &trans &trans   
+			 &kp TAB &kp DEL  					&trans &to BASE 
+)
+
+ZMK_LAYER(bootloader,
+		&bootloader  &trans &trans &tog BASE &tog COLEMAK 	        &trans &trans &trans &trans &bootloader
+		&trans  &bt BT_PRV &bt BT_CLR &bt BT_NXT &trans  			&trans &trans &trans &trans &trans 
+		&bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   			&trans &trans &trans &trans &trans   
+					 &trans &trans  					&trans &trans 
+)
