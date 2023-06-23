@@ -24,7 +24,6 @@
 #define QUICK_TAP_MS 175
 
 &lt {
-    quick-tap-ms = <200>;
     flavor = "balanced";
     quick-tap-ms = <QUICK_TAP_MS>; \
 };
@@ -33,6 +32,8 @@
     continue-list = <BSPC UNDERSCORE MINUS K_CANCEL>;
 };
 
+
+/* Hold-taps */
 
 /* Homerow mods */
 
@@ -43,18 +44,15 @@
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS) \
     ZMK_BEHAVIOR(NAME, hold_tap, \
         flavor = "balanced"; \
-        tapping-term-ms = <280>; \
+        tapping-term-ms = <170>; \
         quick-tap-ms = <QUICK_TAP_MS>; \
         global-quick-tap-ms = <150>; \
         bindings = <HOLD>, <TAP>; \
         hold-trigger-key-positions = <TRIGGER_POS>; \
-        hold-trigger-on-release; \
     )
 
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
-
-/* Hold-taps */
 
 
 /* Conditional layers */
@@ -70,9 +68,7 @@ ZMK_CONDITIONAL_LAYER(MEDIA FUNCTION, BOOTLOADER)
 #define COMBO_TERM_FAST 20
 #define COMBO_TERM_SLOW 35
 
-ZMK_COMBO(equal, &kp EQUAL, RM0 RM1, NUM, COMBO_TERM_SLOW)
 ZMK_COMBO(grave, &kp GRAVE, RM0 RM1, SYM, COMBO_TERM_SLOW)
-ZMK_COMBO(question, &kp QMARK, RM1 RM2, SYM, COMBO_TERM_SLOW)
 ZMK_COMBO(caps, &smart_caps_word, LM1 LM2 LM3, BASE COLEMAK, COMBO_TERM_SLOW)
 /* Macro definitions */
 
@@ -118,6 +114,26 @@ ZMK_BEHAVIOR(macro_redo, macro,
 
 /* Tap dance behaviors */
 
+ZMK_BEHAVIOR(lbkt, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp LBKT>, <&kp LBRC>; \
+)
+
+ZMK_BEHAVIOR(rbkt, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp RBKT>, <&kp RBRC>; \
+)
+
+ZMK_BEHAVIOR(perquest, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp PERCENT>, <&kp QMARK>; \
+)
+
+ZMK_BEHAVIOR(plequal, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp PLUS>, <&kp EQUAL>; \
+)
+
 #define MAKE_MO_TD(NAME, LAYER, SMART_LAYER) \
     ZMK_BEHAVIOR(NAME, tap_dance, \
         tapping-term-ms = <225>; \
@@ -130,13 +146,6 @@ MAKE_MO_TD(nav, NAV, &smart_nav)
 MAKE_MO_TD(mouse, MOUSE, &tog MOUSE)
 
 /* Smart behaviors */
-
-// smart-mouse, requires PR #1366
-// ZMK_BEHAVIOR(smart_mouse, tri_state,
-//     bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-//     ignored-key-positions = <RT1 RT2 RM0 RM1 RM2 RM3 LH0 LH1>;
-//     ignored-layers = <MOUSE>;
-// )
 
 // smart caps_word behavior
 ZMK_BEHAVIOR(smart_caps_word, macro,
@@ -172,26 +181,26 @@ ZMK_LAYER(base,
 		&kp Q &kp W &kp E &kp R &kp T 								&kp Y &kp U  &kp I    &kp O   &kp P 
 		&hml LGUI A &hml LCTL S &hml LSFT D &hml RALT F &hml LALT G 			&hmr LALT H &hmr RALT J &hmr RSFT K &hmr RCTL L &hmr RGUI SCLN
 		&kp Z &kp X &kp C &kp V &kp B				        			&kp N &kp M  &kp CMMA &kp DOT &kp APOS
-          				&num &kp BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+          				&num &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 )
 
 ZMK_LAYER(colemak,
 		&kp Q &kp W &kp F &kp P &kp B 								&kp J &kp L  &kp U    &kp Y   &kp SCLN 
 		&hml LGUI A &hml LCTL R &hml LSFT S &hml RALT T &hml LALT G 			&hmr LALT M &hmr RALT N &hmr RSFT E &hmr RCTL I &hmr RGUI O
 		&kp Z &kp X &kp C &kp D &kp V				        			&kp K &kp H  &kp CMMA &kp DOT &kp APOS
-          				&num &kp BKSP  				&lt FUNCTION SPC &lt MEDIA RET
+          				&num &lt NAV BKSP  				&lt FUNCTION SPC &lt MEDIA RET
 )
 
 ZMK_LAYER(num,
 		&kp ESC  &trans    &trans    &trans    &trans			&kp STAR &kp NUM_7 &kp NUM_8 &kp NUM_9 &trans 
-		&kp LGUI  &kp LCTL    &sym    &kp RALT    &kp LALT 		&kp PLUS &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
+		&kp LGUI  &kp LCTL    &sym    &kp RALT    &kp LALT 		&plequal &kp NUM_4  &kp NUM_5 &kp NUM_6  &kp SLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp MINUS &kp NUM_1 &kp NUM_2 &kp NUM_3  &kp NUM_0 
 					    &trans  &nav  					&kp K_CANCEL &trans 
 )
 
 ZMK_LAYER(sym,
-		&kp ESC  &trans    &trans    &trans    &trans			&kp LBKT &kp AMPERSAND &kp LPAR &kp RPAR &kp RBKT 
-		&kp LGUI  &kp LCTL    &sk LSFT    &kp RALT    &kp LALT 		&kp TILDE &kp DOLLAR  &kp PERCENT &kp CARET  &kp BACKSLASH 
+		&kp ESC  &trans    &trans    &trans    &trans			&lbkt &kp AMPERSAND &kp LPAR &kp RPAR &rbkt 
+		&kp LGUI  &kp LCTL    &sk LSFT    &kp RALT    &kp LALT 		&kp TILDE &kp DOLLAR  &perquest &kp CARET  &kp BACKSLASH 
 		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp PIPE 
 					    &trans  &trans  					&kp K_CANCEL &trans 
 )
