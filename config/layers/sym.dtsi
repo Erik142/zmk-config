@@ -1,0 +1,10 @@
+#ifndef LAYER_SYM_INCLUDED
+#define LAYER_SYM_INCLUDED
+
+ZMK_LAYER(sym,
+		&kp ESC  &trans    &trans    &trans    &trans			&lbkt &kp AMPERSAND &kp LPAR &kp RPAR &rbkt 
+		&kp LGUI  &kp LCTL    &sk LSFT    &kp RALT    &kp LALT 		&kp TILDE &kp DOLLAR  &perquest &kp CARET  &kp BACKSLASH 
+		&trans  &trans    &trans    &trans    &trans 			&kp UNDERSCORE &kp EXCL &kp AT &kp HASH  &kp PIPE 
+					    &trans  &trans  					&trans &trans 
+)
+#endif

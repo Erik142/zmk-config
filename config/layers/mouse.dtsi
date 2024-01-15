@@ -1,0 +1,13 @@
+#ifndef LAYER_MOUSE_INCLUDED
+#define LAYER_MOUSE_INCLUDED
+
+#include "../mouse.dtsi"
+
+ZMK_LAYER(mouse,
+		&trans  &trans    &trans    &trans    &trans		&trans U_WH_D U_WH_U &trans &trans 
+		&trans  &trans    &trans    &trans    &trans 		U_MS_L U_MS_D U_MS_U U_MS_R &trans 
+		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
+						&trans &trans			U_BTN1  U_BTN2 
+)
+
+#endif

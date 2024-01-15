@@ -1,0 +1,10 @@
+#ifndef LAYER_BASE_INCLUDED
+#define LAYER_BASE_INCLUDED
+
+ZMK_LAYER(base,
+		&kp Q &kp W &kp E &kp R &kp T 								                    &kp Y &kp U  &kp I    &kp O   &kp P 
+		&hml LGUI A &hml LCTL S &hml LSFT D &hml RALT F &hml LALT G 			&hmr LALT H &hmr RALT J &hmr RSFT K &hmr RCTL L &hmr RGUI SCLN
+		&kp Z &kp X &kp C &kp V &kp B				        			                &kp N &kp M  &kp CMMA &kp DOT &kp APOS
+          			&lth NUM LAYERS   &kp BKSP  				                        &kp SPC &kp RET
+)
+#endif

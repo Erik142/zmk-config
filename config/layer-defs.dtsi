@@ -1,0 +1,12 @@
+#define BASE 0
+#define COLEMAK 1
+#define LAYERS 2
+#define NUM 3
+#define SYM 4
+#define MEDIA 5
+#define NAV 6
+#define MOUSE 7
+#define FUNCTION 8
+#define BOOTLOADER 9
+
+#define ALL_NO_BASE LAYERS NUM SYM MEDIA NAV MOUSE FUNCTION BOOTLOADER

@@ -1,0 +1,31 @@
+#ifndef TAP_DANCES_INCLUDED
+#define TAP_DANCES_INCLUDED
+
+/* Tap dance behaviors */
+
+ZMK_BEHAVIOR(lbkt, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp LBKT>, <&kp LBRC>; \
+)
+
+ZMK_BEHAVIOR(rbkt, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp RBKT>, <&kp RBRC>; \
+)
+
+ZMK_BEHAVIOR(perquest, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp PERCENT>, <&kp QMARK>; \
+)
+
+ZMK_BEHAVIOR(plequal, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&kp EQUAL>, <&kp PLUS>; \
+)
+
+ZMK_BEHAVIOR(num_sym, tap_dance, \
+    tapping-term-ms = <225>; \
+    bindings = <&tog NUM>, <&tog SYM>; \
+)
+
+#endif

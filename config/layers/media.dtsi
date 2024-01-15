@@ -1,0 +1,11 @@
+#ifndef LAYER_MEDIA_INCLUDED
+#define LAYER_MEDIA_INCLUDED
+
+ZMK_LAYER(media,
+		&trans &trans &trans &trans &trans 			        &trans &trans &caps_word &trans &trans
+		&kp C_PREV  &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &kp C_NEXT     &kp LALT &kp RALT &kp RSFT &kp RCTL &kp RGUI 
+		&trans  &trans &trans &trans &trans   			        &trans &trans &trans &trans &trans   
+			&kp C_PLAY_PAUSE &trans  				       &trans &trans
+)
+
+#endif

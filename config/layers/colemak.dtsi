@@ -1,0 +1,11 @@
+#ifndef LAYER_COLEMAK_INCLUDED
+#define LAYER_COLEMAK_INCLUDED
+
+ZMK_LAYER(colemak,
+		&kp Q &kp W &kp F &kp P &kp B 							&kp J &kp L  &kp U    &kp Y   &kp SCLN 
+		&hml LGUI A &hml LCTL R &hml LSFT S &hml RALT T &hml LALT G 			&hmr LALT M &hmr RALT N &hmr RSFT E &hmr RCTL I &hmr RGUI O
+		&kp Z &kp X &kp C &kp D &kp V				        		&kp K &kp H  &kp CMMA &kp DOT &kp APOS
+		&lth NUM LAYERS &kp BKSP							&kp SPC &kp RET
+)
+
+#endif

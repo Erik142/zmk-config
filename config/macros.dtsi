@@ -1,0 +1,44 @@
+#ifndef MACROS_INCLUDED
+#define MACROS_INCLUDED
+/* Macro definitions */
+
+ZMK_BEHAVIOR(macro_cut, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp X>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_copy, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp C>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_paste, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp V>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_undo, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp Z>
+        , <&macro_release &kp LCTL>
+        ;
+)
+
+ZMK_BEHAVIOR(macro_redo, macro,
+    bindings
+        = <&macro_press &kp LCTL>
+        , <&macro_tap &kp Y>
+        , <&macro_release &kp LCTL>
+        ;
+)
+#endif

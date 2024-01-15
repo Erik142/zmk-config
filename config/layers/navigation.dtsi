@@ -1,0 +1,11 @@
+#ifndef LAYER_NAV_INCLUDED
+#define LAYER_NAV_INCLUDED
+
+ZMK_LAYER(nav,
+		&kp ESC  &trans    &caps_word    &trans    &trans		&macro_undo &macro_cut &macro_copy &macro_paste &macro_redo 
+		&kp LGUI  &kp LCTL    &kp LSHFT    &kp RALT    &kp LALT 		&kp LEFT &kp DOWN &kp UP &kp RIGHT &trans 
+		&trans  &trans    &trans    &trans    &trans 			&kp HOME &kp PAGE_DOWN &kp PAGE_UP &kp END &kp PSCRN 
+					    &trans  &trans  	            &trans &trans 
+)
+
+#endif

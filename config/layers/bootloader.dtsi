@@ -1,0 +1,10 @@
+#ifndef LAYER_BOOTLOADER_INCLUDED
+#define LAYER_BOOTLOADER_INCLUDED
+
+ZMK_LAYER(bootloader,
+		&bootloader  &trans &trans &tog BASE &tog COLEMAK 	        &trans &trans &trans &trans &bootloader
+		&trans  &bt BT_PRV &bt BT_CLR &bt BT_NXT &trans  			&trans &trans &trans &trans &trans 
+		&bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   			&trans &trans &trans &trans &trans   
+					 &trans &trans  					&trans &trans 
+)
+#endif

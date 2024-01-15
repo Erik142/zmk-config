@@ -1,0 +1,17 @@
+#ifndef COMBOS_INCLUDED
+#define COMBOS_INCLUDED
+/* Combo definitions */
+
+#include "layer-defs.dtsi"
+
+#undef COMBO_TERM_FAST
+#undef COMBO_TERM_SLOW
+#define COMBO_TERM_FAST 20
+#define COMBO_TERM_SLOW 35
+#define COMBO_TERM_XSLOW 1000
+
+ZMK_COMBO(to_base_layer, &to BASE, RH0 LH0, ALL_NO_BASE, COMBO_TERM_XSLOW)
+
+ZMK_COMBO(grave, &kp GRAVE, RM0 RM1, SYM, COMBO_TERM_SLOW)
+ZMK_COMBO(caps, &caps_word, LM1 LM2 LM3, BASE COLEMAK, COMBO_TERM_SLOW)
+#endif
