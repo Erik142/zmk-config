@@ -25,5 +25,6 @@ ifneq ($(VERBOSE),0)
 endif
 	$(Q)if [[ ! -e $(BUILD_DIR) || ! -d $(BUILD_DIR) ]]; then rm -rf $(BUILD_DIR) && mkdir -p $(BUILD_DIR); fi
 	$(Q)if [[ ! -e $(ZMK_DIR) || ! -d $(ZMK_DIR) ]]; then rm -rf $(ZMK_DIR) && cd $(BASE_DIR) && git clone $(ZMK_URL); fi
+	$(Q)git -C $(ZMK_DIR) fetch --all --force
 	$(Q)git -C $(ZMK_DIR) pull --rebase origin $(ZMK_BRANCH)
 	$(Q)$(SCRIPTS_DIR)/zmk_build.sh -v 3.2 --host-zmk-dir $(ZMK_DIR) --host-config-dir $(ZMK_CONFIG_DIR) -o $(BUILD_DIR) -- -p
