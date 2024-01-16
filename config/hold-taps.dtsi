@@ -19,6 +19,6 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)
 ZMK_BEHAVIOR(lth, hold_tap, \
       flavor = "balanced"; \
       tapping-term-ms = <150>; \
-      bindings = <&mo>, <&tog>; \
+      bindings = <&mo>, <&tab_layer>; \
 )
 #endif

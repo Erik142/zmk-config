@@ -28,4 +28,9 @@ ZMK_BEHAVIOR(num_sym, tap_dance, \
     bindings = <&tog NUM>, <&tog SYM>; \
 )
 
+ZMK_BEHAVIOR(tab_layer, tap_dance, \
+    tapping-term-ms = <300>; \
+    bindings = <&tog LAYERS>, <&kp TAB>; \
+)
+
 #endif

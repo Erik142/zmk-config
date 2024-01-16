@@ -8,8 +8,8 @@
 #include "layer-defs.dtsi"
 #include "keys.dtsi"
 #include "combos.dtsi"
+#include "tap-dances.dtsi"
 #include "hold-taps.dtsi"
 #include "macros.dtsi"
-#include "tap-dances.dtsi"
 
 #include "layers.dtsi"

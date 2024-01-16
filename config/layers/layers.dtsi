@@ -5,6 +5,6 @@ ZMK_LAYER(layers,
 		&trans  &trans    &trans    &trans    &trans		&trans &trans &trans &trans &trans 
 		&trans  &tog SYM    &tog NUM    &tog NAV    &tog MOUSE 		&tog BOOTLOADER &tog FUNCTION &tog MEDIA &trans &trans 
 		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
-					    &kp TAB  &trans           &trans &trans 
+					    &trans  &trans           &trans &trans 
 )
 #endif
