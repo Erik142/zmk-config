@@ -3,7 +3,7 @@
 
 ZMK_LAYER(layers,
 		&trans  &trans    &trans    &trans    &trans		&trans &trans &trans &trans &trans 
-		&trans  &tog SYM    &tog NUM    &tog NAV    &tog MOUSE 		&tog BOOTLOADER &tog FUNCTION &tog MEDIA &trans &trans 
+		&trans  &layer_ht SYM SYM    &layer_ht NUM NUM    &layer_ht NAV NAV    &layer_ht MOUSE MOUSE 		&layer_ht BOOTLOADER BOOTLOADER &layer_ht FUNCTION FUNCTION &layer_ht MEDIA MEDIA &trans &trans 
 		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
 					    &trans  &trans           &trans &trans 
 )

@@ -25,7 +25,7 @@ ZMK_BEHAVIOR(plequal, tap_dance, \
 
 ZMK_BEHAVIOR(tab_layer, tap_dance, \
     tapping-term-ms = <300>; \
-    bindings = <&tog LAYERS>, <&kp TAB>; \
+    bindings = <&sl LAYERS>, <&kp TAB>; \
 )
 
 #endif

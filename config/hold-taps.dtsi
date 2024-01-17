@@ -21,4 +21,10 @@ ZMK_BEHAVIOR(lth, hold_tap, \
       tapping-term-ms = <150>; \
       bindings = <&mo>, <&tab_layer>; \
 )
+
+ZMK_BEHAVIOR(layer_ht, hold_tap, \
+      flavor = "balanced"; \
+      tapping-term-ms = <150>; \
+      bindings = <&mo>, <&tog>; \
+)
 #endif
