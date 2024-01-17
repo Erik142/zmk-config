@@ -4,12 +4,12 @@
 
 #include "../zmk-nodefree-config/helper.h"
 
-#include "settings.dtsi"
-#include "layer-defs.dtsi"
-#include "keys.dtsi"
-#include "combos.dtsi"
-#include "tap-dances.dtsi"
-#include "hold-taps.dtsi"
-#include "macros.dtsi"
+#include "behaviors/settings.dtsi"
+#include "behaviors/layer-defs.dtsi"
+#include "behaviors/keys.dtsi"
+#include "behaviors/combos.dtsi"
+#include "behaviors/tap-dances.dtsi"
+#include "behaviors/hold-taps.dtsi"
+#include "behaviors/macros.dtsi"
 
-#include "layers.dtsi"
+#include "behaviors/layers.dtsi"
