@@ -4,10 +4,17 @@
 #include "../behaviors/mouse.dtsi"
 
 ZMK_LAYER(mouse,
-		&trans  &trans    &trans    &trans    &trans		&trans U_WH_D U_WH_U &trans &trans 
-		&trans  &trans    &trans    &trans    &trans 		U_MS_L U_MS_D U_MS_U U_MS_R &trans 
+		&trans  &trans    &trans    &trans    &trans		&trans &trans &trans &trans &trans 
+		&trans  &trans    &tog MOUSE_SCROLL    &trans    &trans 		U_MS_L U_MS_D U_MS_U U_MS_R &trans 
 		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
-						&trans &trans			U_BTN1  U_BTN2 
+						&trans U_BTN3			U_BTN1  U_BTN2 
+)
+
+ZMK_LAYER(mouse_scroll,
+		&trans  &trans    &trans    &trans    &trans		&trans &trans &trans &trans &trans 
+		&trans  &trans    &to MOUSE    &trans    &trans 		U_WH_L U_WH_D U_WH_U U_WH_R &trans 
+		&trans  &trans    &trans    &trans    &trans 		&trans &trans &trans &trans &trans
+						&trans U_BTN3			U_BTN1  U_BTN2 
 )
 
 #endif
