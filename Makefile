@@ -9,14 +9,37 @@ endif
 ZMK_CONFIG_DIR = $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 BASE_DIR = $(realpath $(dir $(abspath $(ZMK_CONFIG_DIR))))
 
+export HOST_MODULES_DIR ?= $(BASE_DIR)/zmk-modules
+
 SCRIPTS_DIR = $(ZMK_CONFIG_DIR)/scripts
 ZMK_DIR ?= $(BASE_DIR)/zmk
+ZMK_HELPERS_DIR ?= $(HOST_MODULES_DIR)/zmk-helpers
 BUILD_DIR ?= $(BASE_DIR)/zmk-build
 LOG_DIR ?= $(BASE_DIR)/zmk-logs
-export HOST_MODULES_DIR ?= $(BASE_DIR)/zmk-modules
 
 ZMK_URL ?= https://github.com/urob/zmk.git
 ZMK_BRANCH ?= main
+
+ZMK_HELPERS_URL ?= https://github.com/urob/zmk-helpers.git
+ZMK_HELPERS_BRANCH ?= v2
+
+define create_dir
+	$(Q)if [ ! -e $(1) ] || [ ! -d $(1) ]; then rm -rf $(1) && mkdir -p $(1); fi
+endef
+
+define clone_repo
+	$(Q)$(call create_dir,$(shell dirname $(1)))
+	$(Q)if [ ! -e $(1)/.git ] || [ ! -d $(1)/.git ]; then cd $(1) && git clone $(2); fi
+endef
+
+define update_repo
+	$(Q)git -C $(1) fetch --all --force
+	$(Q)git -C $(1) pull --rebase origin $(2)
+endef
+
+define get_zephyr_version
+	ZEPHYR_VERSION ?= $(shell cat $(ZMK_DIR)/.devcontainer/Dockerfile | head -1 | cut -d: -f2)
+endef
 
 .PHONY: all
 all: build
@@ -29,10 +52,10 @@ ifneq ($(VERBOSE),0)
 	$(Q)echo "ZMK_DIR = $(ZMK_DIR)"
 	$(Q)echo "BUILD_DIR = $(BUILD_DIR)"
 endif
-	$(Q)if [ ! -e $(BUILD_DIR) ] || [ ! -d $(BUILD_DIR) ]; then rm -rf $(BUILD_DIR) && mkdir -p $(BUILD_DIR); fi
-	$(Q)if [ ! -e $(LOG_DIR) ] || [ ! -d $(LOG_DIR) ]; then rm -rf $(LOG_DIR) && mkdir -p $(LOG_DIR); fi
-	$(Q)if [ ! -e $(HOST_MODULES_DIR) ] || [ ! -d $(HOST_MODULES_DIR) ]; then rm -rf $(HOST_MODULES_DIR) && mkdir -p $(HOST_MODULES_DIR); fi
-	$(Q)if [ ! -e $(ZMK_DIR) ] || [ ! -d $(ZMK_DIR) ]; then rm -rf $(ZMK_DIR) && cd $(BASE_DIR) && git clone $(ZMK_URL); fi
-	$(Q)git -C $(ZMK_DIR) fetch --all --force
-	$(Q)git -C $(ZMK_DIR) pull --rebase origin $(ZMK_BRANCH)
-	$(Q)$(SCRIPTS_DIR)/zmk_build.sh --no-multithread -v 3.5 --host-zmk-dir $(ZMK_DIR) --host-config-dir $(ZMK_CONFIG_DIR) -o $(BUILD_DIR) -- -p
+	$(Q)$(call create_dir,$(BUILD_DIR))
+	$(Q)$(call clone_repo,$(ZMK_HELPERS_DIR),$(ZMK_HELPERS_URL))
+	$(Q)$(call clone_repo,$(ZMK_DIR),$(ZMK_HELPERS_URL))
+	$(Q)$(call update_repo,$(ZMK_DIR),$(ZMK_BRANCH))
+	$(Q)$(call update_repo,$(ZMK_HELPERS_DIR),$(ZMK_HELPERS_BRANCH))
+	$(Q)$(eval $(call get_zephyr_version))
+	$(Q)$(SCRIPTS_DIR)/zmk_build.sh --no-multithread -v $(ZEPHYR_VERSION) --host-zmk-dir $(ZMK_DIR) --host-config-dir $(ZMK_CONFIG_DIR) -o $(BUILD_DIR) -- -p
